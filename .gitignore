@@ -175,3 +175,5 @@ public/
 
 # Nx
 .nx/cache
+
+bin/

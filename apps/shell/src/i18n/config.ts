@@ -14,6 +14,7 @@ const resources = {
   },
 };
 
+// Initialize i18next synchronously
 i18n
   // Detect user language
   .use(LanguageDetector)
@@ -25,15 +26,22 @@ i18n
     fallbackLng: 'no', // Norwegian as default fallback
     lng: 'no', // Default language is Norwegian
     detection: {
-      order: ['navigator', 'htmlTag', 'path', 'subdomain'],
+      order: ['localStorage', 'cookie', 'navigator', 'htmlTag'],
       caches: ['localStorage', 'cookie'],
     },
     interpolation: {
       escapeValue: false, // React already escapes values
     },
     react: {
-      useSuspense: true, // Enable suspense for proper loading
+      useSuspense: false, // Disable suspense since we're loading synchronously
     },
+    load: 'languageOnly', // Load only language code (no, en) not region codes (no-NO, en-US)
+    debug: false,
   });
+
+// Force Norwegian if no language is detected
+if (!i18n.language || !['no', 'en'].includes(i18n.language)) {
+  i18n.changeLanguage('no');
+}
 
 export default i18n;

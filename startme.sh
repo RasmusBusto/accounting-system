@@ -13,14 +13,14 @@ cd "$SCRIPT_DIR"
 # Create a PID file directory
 mkdir -p .pids
 
-# Function to start an MFE in preview mode (serves built files)
+# Function to start an MFE in dev mode (HMR)
 start_mfe() {
     local app_name=$1
     local app_port=$2
 
     echo "Starting $app_name on port $app_port..."
     cd "apps/$app_name"
-    pnpm run preview > "../../.pids/${app_name}.log" 2>&1 &
+    pnpm run dev > "../../.pids/${app_name}.log" 2>&1 &
     local pid=$!
     echo $pid > "../../.pids/${app_name}.pid"
     cd "$SCRIPT_DIR"
@@ -42,7 +42,7 @@ start_shell() {
 }
 
 # Start all MFEs first (they need to be running before shell)
-echo "📦 Starting Micro Frontends (preview mode - serving built files)..."
+echo "📦 Starting Micro Frontends (dev mode - HMR enabled)..."
 start_mfe "dashboard" 4201
 start_mfe "invoicing" 4202
 start_mfe "expenses" 4203

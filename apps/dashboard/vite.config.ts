@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import federation from '@originjs/vite-plugin-federation'
+import { federation } from '@module-federation/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -15,11 +15,9 @@ export default defineConfig({
       shared: {
         react: {
           singleton: true,
-          requiredVersion: '^19.1.1',
         },
         'react-dom': {
           singleton: true,
-          requiredVersion: '^19.1.1',
         },
         'react-router-dom': {
           singleton: true,
@@ -30,7 +28,7 @@ export default defineConfig({
         'i18next': {
           singleton: true,
         },
-      } as any
+      }
     })
   ],
   server: {

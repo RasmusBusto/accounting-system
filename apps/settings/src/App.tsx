@@ -25,10 +25,6 @@ function App() {
     return () => clearInterval(interval);
   }, [i18n]);
 
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
-
   return (
     <div className="p-6">
         <div className="bg-white rounded-lg shadow">

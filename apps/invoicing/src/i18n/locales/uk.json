@@ -1,0 +1,12 @@
+{
+  "invoicing": {
+    "title": "Рахунки",
+    "createInvoice": "Створити Новий Рахунок",
+    "description": "Керуйте своїми рахунками тут.",
+    "uploadInvoice": "Завантажити Рахунок",
+    "dragDropOrClick": "Перетягніть файл сюди або клацніть, щоб вибрати",
+    "supportedFormats": "PDF, JPG, JPEG або PNG",
+    "cancel": "Скасувати",
+    "upload": "Завантажити"
+  }
+}

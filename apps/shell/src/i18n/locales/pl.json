@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "dashboard": "Pulpit",
+    "invoices": "Faktury",
+    "expenses": "Wydatki",
+    "reports": "Raporty",
+    "clients": "Klienci",
+    "demoUser": "Użytkownik Demo"
+  },
+  "common": {
+    "loading": "Ładowanie...",
+    "error": "Błąd",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "add": "Dodaj",
+    "search": "Szukaj",
+    "filter": "Filtruj",
+    "export": "Eksportuj",
+    "import": "Importuj",
+    "settings": "Ustawienia",
+    "logout": "Wyloguj",
+    "login": "Zaloguj",
+    "language": "Język"
+  },
+  "languages": {
+    "no": "Norweski",
+    "en": "Angielski",
+    "pl": "Polski",
+    "uk": "Ukraiński"
+  }
+}

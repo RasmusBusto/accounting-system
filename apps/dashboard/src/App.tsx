@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <h1 className="text-3xl font-bold text-gray-900 mb-6">{t('dashboard.title')}</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white p-6 rounded-lg shadow">
           <h3 className="text-lg font-semibold text-gray-700">{t('dashboard.totalRevenue')}</h3>
           <p className="text-3xl font-bold text-green-600 mt-2">$45,231</p>
@@ -15,10 +15,6 @@ function App() {
         <div className="bg-white p-6 rounded-lg shadow">
           <h3 className="text-lg font-semibold text-gray-700">{t('dashboard.pendingInvoices')}</h3>
           <p className="text-3xl font-bold text-blue-600 mt-2">12</p>
-        </div>
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h3 className="text-lg font-semibold text-gray-700">{t('dashboard.activeClients')}</h3>
-          <p className="text-3xl font-bold text-purple-600 mt-2">48</p>
         </div>
       </div>
       <div className="mt-8 bg-white p-6 rounded-lg shadow">

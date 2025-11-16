@@ -2,6 +2,11 @@
   "invoicing": {
     "title": "Fakturaer",
     "createInvoice": "Opprett Ny Faktura",
-    "description": "Administrer dine fakturaer her."
+    "description": "Administrer dine fakturaer her.",
+    "uploadInvoice": "Last opp faktura",
+    "dragDropOrClick": "Dra og slipp fil her, eller klikk for å velge",
+    "supportedFormats": "PDF, JPG, JPEG eller PNG",
+    "cancel": "Avbryt",
+    "upload": "Last opp"
   }
 }

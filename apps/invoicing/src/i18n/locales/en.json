@@ -2,6 +2,11 @@
   "invoicing": {
     "title": "Invoices",
     "createInvoice": "Create New Invoice",
-    "description": "Manage your invoices here."
+    "description": "Manage your invoices here.",
+    "uploadInvoice": "Upload Invoice",
+    "dragDropOrClick": "Drag and drop file here, or click to select",
+    "supportedFormats": "PDF, JPG, JPEG or PNG",
+    "cancel": "Cancel",
+    "upload": "Upload"
   }
 }

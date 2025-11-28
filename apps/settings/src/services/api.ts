@@ -1,6 +1,6 @@
 import type { Department, Project, ApiError } from '../types';
 
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = '/backend/api';
 
 class ApiService {
   private async handleResponse<T>(response: Response): Promise<T> {

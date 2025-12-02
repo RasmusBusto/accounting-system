@@ -21,37 +21,11 @@ test.describe('Settings Language Switching', () => {
 
     // Click language switcher to English
     console.log('🔄 Switching to English...');
-    const langSwitcher = page.locator('select, button').filter({ hasText: /Norsk|Norwegian|Språk|Language/i }).first();
 
-    // Try to find and click language dropdown
-    const langDropdown = page.locator('[data-testid="language-selector"], select[name="language"], button:has-text("Norsk")').first();
-
-    if (await langDropdown.isVisible({ timeout: 5000 }).catch(() => false)) {
-      await langDropdown.click();
-      await page.waitForTimeout(500);
-
-      // Click English option
-      const englishOption = page.locator('text=English, text=Engelsk').first();
-      if (await englishOption.isVisible({ timeout: 2000 }).catch(() => false)) {
-        await englishOption.click();
-      } else {
-        // Try selecting from dropdown
-        await page.selectOption('select', 'en').catch(() => {
-          console.log('Could not select English from dropdown');
-        });
-      }
-    } else {
-      console.log('⚠️  Language switcher not found, trying localStorage approach');
-      // Directly set language in localStorage
-      await page.evaluate(() => {
-        localStorage.setItem('i18nextLng', 'en');
-        window.dispatchEvent(new StorageEvent('storage', {
-          key: 'i18nextLng',
-          newValue: 'en',
-          oldValue: 'no'
-        }));
-      });
-    }
+    // Find and use the language dropdown select element
+    const langSelect = page.locator('select').filter({ hasText: /Norsk|Norwegian/ }).first();
+    await langSelect.selectOption('en');
+    console.log('✅ Selected English from dropdown');
 
     await page.waitForTimeout(2000);
     await page.screenshot({ path: '/tmp/settings-lang-english.png', fullPage: true });
@@ -100,14 +74,9 @@ test.describe('Settings Language Switching', () => {
 
     // Switch back to Norwegian
     console.log('🔄 Switching back to Norwegian...');
-    await page.evaluate(() => {
-      localStorage.setItem('i18nextLng', 'no');
-      window.dispatchEvent(new StorageEvent('storage', {
-        key: 'i18nextLng',
-        newValue: 'no',
-        oldValue: 'en'
-      }));
-    });
+    const langSelectBack = page.locator('select').filter({ hasText: /English|Norwegian/ }).first();
+    await langSelectBack.selectOption('no');
+    console.log('✅ Selected Norwegian from dropdown');
 
     await page.waitForTimeout(2000);
     await page.screenshot({ path: '/tmp/settings-lang-norwegian-final.png', fullPage: true });
@@ -134,15 +103,9 @@ test.describe('Settings Language Switching', () => {
     await page.goto('http://localhost:4200/settings');
     await page.waitForTimeout(2000);
 
-    // Set to English
-    await page.evaluate(() => {
-      localStorage.setItem('i18nextLng', 'en');
-      window.dispatchEvent(new StorageEvent('storage', {
-        key: 'i18nextLng',
-        newValue: 'en',
-        oldValue: 'no'
-      }));
-    });
+    // Switch to English using dropdown
+    const langSelect = page.locator('select').filter({ hasText: /Norsk|Norwegian/ }).first();
+    await langSelect.selectOption('en');
     await page.waitForTimeout(1000);
 
     // Click Add Department

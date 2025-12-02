@@ -8,16 +8,9 @@ test.describe('Settings All Languages Switching', () => {
 
     console.log('📍 Test 1: Norwegian (default)');
 
-    // Set to Norwegian
-    await page.evaluate(() => {
-      localStorage.setItem('i18nextLng', 'no');
-    });
-    await page.reload();
-    await page.waitForTimeout(2000);
-
     await page.screenshot({ path: '/tmp/settings-all-lang-norwegian.png', fullPage: true });
 
-    // Verify Norwegian text
+    // Verify Norwegian text (default)
     const departmentsTabNo = page.locator('button:has-text("Avdelinger")');
     const projectsTabNo = page.locator('button:has-text("Prosjekter")');
     const addDeptButtonNo = page.locator('button:has-text("Legg til avdeling")');
@@ -38,13 +31,11 @@ test.describe('Settings All Languages Switching', () => {
     await expect(descHeaderNo).toBeVisible();
     console.log('✅ Norwegian table headers: KODE, NAVN, BESKRIVELSE');
 
-    // Test 2: English
+    // Test 2: English - use dropdown to switch
     console.log('\n📍 Test 2: English');
-    await page.evaluate(() => {
-      localStorage.setItem('i18nextLng', 'en');
-    });
-    await page.reload();
-    await page.waitForTimeout(2000);
+    const langSelect = page.locator('select').first();
+    await langSelect.selectOption('en');
+    await page.waitForTimeout(1000);
 
     await page.screenshot({ path: '/tmp/settings-all-lang-english.png', fullPage: true });
 
@@ -70,11 +61,8 @@ test.describe('Settings All Languages Switching', () => {
 
     // Test 3: Polish
     console.log('\n📍 Test 3: Polish');
-    await page.evaluate(() => {
-      localStorage.setItem('i18nextLng', 'pl');
-    });
-    await page.reload();
-    await page.waitForTimeout(2000);
+    await langSelect.selectOption('pl');
+    await page.waitForTimeout(1000);
 
     await page.screenshot({ path: '/tmp/settings-all-lang-polish.png', fullPage: true });
 
@@ -100,11 +88,8 @@ test.describe('Settings All Languages Switching', () => {
 
     // Test 4: Ukrainian
     console.log('\n📍 Test 4: Ukrainian');
-    await page.evaluate(() => {
-      localStorage.setItem('i18nextLng', 'uk');
-    });
-    await page.reload();
-    await page.waitForTimeout(2000);
+    await langSelect.selectOption('uk');
+    await page.waitForTimeout(1000);
 
     await page.screenshot({ path: '/tmp/settings-all-lang-ukrainian.png', fullPage: true });
 

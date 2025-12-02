@@ -26,9 +26,10 @@ test.describe('Settings Page - Departments and Projects', () => {
     await addButton.click();
     await page.waitForTimeout(1000);
 
-    // Fill in the form
-    await page.fill('input[name="code"]', 'TEST');
-    await page.fill('input[name="name"]', 'Test Department');
+    // Fill in the form with unique code
+    const uniqueCode = `DEPT${Date.now()}`;
+    await page.fill('input[name="code"]', uniqueCode);
+    await page.fill('input[name="name"]', 'Test Department Full');
     await page.fill('textarea[name="description"]', 'This is a test department');
 
     // Submit the form
@@ -43,10 +44,10 @@ test.describe('Settings Page - Departments and Projects', () => {
     console.log(`New department count: ${newRowCount}`);
     expect(newRowCount).toBeGreaterThan(initialRowCount);
 
-    // Verify the new department is visible
-    const testRow = page.locator('tr:has-text("TEST")');
+    // Verify the new department is visible using unique code
+    const testRow = page.locator(`tr:has-text("${uniqueCode}")`);
     await expect(testRow).toBeVisible();
-    await expect(testRow).toContainText('Test Department');
+    await expect(testRow).toContainText('Test Department Full');
 
     console.log('✅ Department added successfully');
   });
@@ -81,9 +82,10 @@ test.describe('Settings Page - Departments and Projects', () => {
     await addButton.click();
     await page.waitForTimeout(1000);
 
-    // Fill in the project form
-    await page.fill('input[name="code"]', 'TESTPROJ');
-    await page.fill('input[name="name"]', 'Test Project');
+    // Fill in the project form with unique code
+    const uniqueCode = `PROJ${Date.now()}`;
+    await page.fill('input[name="code"]', uniqueCode);
+    await page.fill('input[name="name"]', 'Test Project Full');
     await page.fill('textarea[name="description"]', 'This is a test project');
     await page.fill('input[name="startDate"]', '2025-01-01');
     await page.fill('input[name="endDate"]', '2025-12-31');
@@ -106,10 +108,10 @@ test.describe('Settings Page - Departments and Projects', () => {
     console.log(`New project count: ${newRowCount}`);
     expect(newRowCount).toBeGreaterThan(initialRowCount);
 
-    // Verify the new project is visible
-    const testRow = page.locator('tr:has-text("TESTPROJ")');
+    // Verify the new project is visible using unique code
+    const testRow = page.locator(`tr:has-text("${uniqueCode}")`);
     await expect(testRow).toBeVisible();
-    await expect(testRow).toContainText('Test Project');
+    await expect(testRow).toContainText('Test Project Full');
 
     console.log('✅ Project added successfully');
   });
